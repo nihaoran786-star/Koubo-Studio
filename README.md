@@ -1,4 +1,4 @@
-# 口播智能体
+# Koubo Studio（口播智能体）
 
 一个 local-first 的 Windows 数字人口播制作应用。它把文案、声音、数字人、本地剪辑和浏览器辅助发布串成一条简单的五步工作流。
 
@@ -11,6 +11,14 @@ AI 对话生成文案
 ```
 
 项目正处于删除式轻量化阶段：保留真实的本地生成与媒体处理能力，删除旧外部发布系统、假素材入口和过度验收底座。当前事实与边界以 [`docs/CONTEXT.md`](docs/CONTEXT.md) 为准。
+
+## 上游资产与学习使用声明
+
+本仓库公开的是 Koubo Studio 的应用源码，供学习、研究和开发参考；不随仓库或 Release 提供任何上游数字人模型、模型权重、`.so`、CUDA 组件、Docker 镜像或 WSL rootfs。
+
+- 数字人适配层参考 DUIX.COM 与 HeyGem 生态的公开接口；每位使用者必须自行从上游取得所需资产，并遵守对应许可、NOTICE、归属和适用法律。
+- 不能因为项目免费、非商业或“仅供学习”而镜像、转存或重新打包上游模型与二进制。
+- 若使用 DUIX.COM Materials，须遵守其 Community License 的协议副本、`Built with DUIX.COM` 展示和 NOTICE 等要求；详见 [`NOTICE`](NOTICE) 与 [`docs/KOUBO_RUNTIME_DISTRIBUTION.md`](docs/KOUBO_RUNTIME_DISTRIBUTION.md)。
 
 ## 产品原则
 

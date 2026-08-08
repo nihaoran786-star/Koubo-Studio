@@ -1,0 +1,17 @@
+# 第三方声明与分发边界
+
+Koubo Studio 的公开仓库只包含本项目源码与接口桥接代码。仓库不包含、也不授权再分发任何第三方数字人模型、模型权重、Linux `.so`、CUDA 组件、Docker 镜像或 WSL rootfs。
+
+## DUIX.COM
+
+本项目的数字人适配层可与 DUIX.COM 生态兼容。若使用或分发 DUIX.COM Materials，使用者必须自行接受并遵守 [DUIX.COM Community License](https://github.com/duixcom/Duix-Avatar/blob/main/LICENSE)，包括其中对协议随附、`Built with DUIX.COM` 展示、用户协议披露、NOTICE 保留以及月活规模的要求。
+
+要求保留的归属文本：
+
+> DUIX.COM is licensed under the DUIX.COM Community License, Copyright © DUIX.COM Platforms, Inc. All Rights Reserved.
+
+## HeyGem-Linux-Python-Hack
+
+本项目可参考 [HeyGem-Linux-Python-Hack](https://github.com/Holasyb918/HeyGem-Linux-Python-Hack) 的公开接口。该上游 README 说明其 `.so` 和模型来自其他权利方并指向 HeyGem.ai 的许可；本仓库不会镜像或再分发这些资产。使用者必须自行核实并遵守全部上游许可。
+
+本文件不是法律意见，也不替代上游许可或取得权利人的书面授权。
