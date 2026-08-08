@@ -1,0 +1,42 @@
+# v0 sandbox internal files
+__v0_runtime_loader.js
+__v0_devtools.tsx
+__v0_jsx-dev-runtime.ts
+.snowflake/
+.v0-trash/
+.vercel/
+
+# Environment variables
+.env*.local
+
+# Common ignores
+node_modules
+.next/
+out/
+src-tauri/target/
+src-tauri/.target/
+src-tauri/resources/koubo-backend/*
+!src-tauri/resources/koubo-backend/.gitkeep
+tsconfig.tsbuildinfo
+data/workspaces/
+data/settings/
+data/runtime-assets/
+data/runtimes/
+
+# Generated runtime packages, model caches, media evidence and local agent state
+artifacts/
+test-results/
+.agent-loop/
+.code-review-graph/
+runtime/**/__pycache__/
+*.py[cod]
+outside.mp4
+.codex-*.log
+
+# Local Codex/dev artifacts
+.codex-screenshots/
+.codex-dev-server*.log
+.codex-dev-server*.err.log
+.codex-dev-server-static.pid
+
+.DS_Store

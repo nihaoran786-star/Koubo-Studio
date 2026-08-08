@@ -1,0 +1,15 @@
+#!/bin/sh
+set -eu
+
+PYTHONPATH=/opt/koubo/runtime
+PYTHON=/opt/koubo/venv/bin/python
+
+case "${1:-}" in
+  start|stop)
+    exec env PYTHONPATH="$PYTHONPATH" "$PYTHON" -m koubo_runtime.controller "$1"
+    ;;
+  *)
+    printf '%s\n' 'usage: koubo-runtime start|stop' >&2
+    exit 2
+    ;;
+esac

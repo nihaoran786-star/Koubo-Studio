@@ -1,0 +1,80 @@
+#!/bin/sh
+set -eu
+
+RUNTIME_ROOT="${KOUBO_RUNTIME_ROOT:-/opt/koubo/runtime}"
+VENDOR_ROOT="${KOUBO_HEYGEM_VENDOR_ROOT:-/opt/koubo/heygem/vendor}"
+PYTHON="${KOUBO_HEYGEM_PYTHON:-/opt/koubo/heygem-python/bin/python3.8}"
+PYTHON_ROOT="$(dirname "$(dirname "$PYTHON")")"
+SITE_PACKAGES="${PYTHON_ROOT}/lib/python3.8/site-packages"
+COMPAT_ROOT="${KOUBO_HEYGEM_COMPAT_ROOT:-/opt/koubo/compat}"
+DATA_ROOT="${KOUBO_HEYGEM_DATA_ROOT:-/opt/koubo/heygem-data}"
+PID_FILE="${KOUBO_HEYGEM_PID_FILE:-/run/koubo-heygem-worker.pid}"
+LOG_DIR="${KOUBO_HEYGEM_LOG_DIR:-/var/log/koubo-runtime}"
+LOG_FILE="${LOG_DIR}/heygem-worker.log"
+
+is_alive() {
+    [ -f "$PID_FILE" ] || return 1
+    pid="$(cat "$PID_FILE" 2>/dev/null || true)"
+    [ -n "$pid" ] || return 1
+    kill -0 "$pid" 2>/dev/null || return 1
+    grep -zq "vendor_runtime.server" "/proc/$pid/cmdline" 2>/dev/null
+}
+
+start_worker() {
+    if is_alive; then
+        return 0
+    fi
+    rm -f "$PID_FILE"
+    mkdir -p "$DATA_ROOT" "$LOG_DIR"
+    PYTHONPATH="$RUNTIME_ROOT" \
+    KOUBO_RUNTIME_ROOT="$RUNTIME_ROOT" \
+    KOUBO_HEYGEM_VENDOR_ROOT="$VENDOR_ROOT" \
+    KOUBO_HEYGEM_PYTHON="$PYTHON" \
+    KOUBO_HEYGEM_DATA_ROOT="$DATA_ROOT" \
+    NUMEXPR_MAX_THREADS="${NUMEXPR_MAX_THREADS:-8}" \
+    LD_LIBRARY_PATH="${COMPAT_ROOT}/usr/lib/x86_64-linux-gnu:${SITE_PACKAGES}/nvidia/cuda_runtime/lib:${SITE_PACKAGES}/nvidia/cufft/lib:${SITE_PACKAGES}/nvidia/curand/lib:${SITE_PACKAGES}/torch/lib:/usr/lib/wsl/lib:${LD_LIBRARY_PATH:-}" \
+    nohup setsid "$PYTHON" -m vendor_runtime.server \
+        </dev/null >>"$LOG_FILE" 2>&1 &
+    pid="$!"
+    printf '%s\n' "$pid" >"$PID_FILE"
+    sleep 1
+    if ! is_alive; then
+        rm -f "$PID_FILE"
+        return 1
+    fi
+}
+
+stop_worker() {
+    if ! is_alive; then
+        rm -f "$PID_FILE"
+        return 0
+    fi
+    pid="$(cat "$PID_FILE")"
+    kill -TERM "-$pid" 2>/dev/null || kill -TERM "$pid" 2>/dev/null || true
+    count=0
+    while kill -0 "$pid" 2>/dev/null && [ "$count" -lt 20 ]; do
+        sleep 1
+        count=$((count + 1))
+    done
+    if kill -0 "$pid" 2>/dev/null; then
+        kill -KILL "-$pid" 2>/dev/null || kill -KILL "$pid" 2>/dev/null || true
+    fi
+    rm -f "$PID_FILE"
+}
+
+case "${1:-}" in
+    start)
+        start_worker
+        ;;
+    stop)
+        stop_worker
+        ;;
+    reset-worker)
+        stop_worker
+        start_worker
+        ;;
+    *)
+        printf '%s\n' "usage: heygem-supervisor start|stop|reset-worker" >&2
+        exit 2
+        ;;
+esac

@@ -1,0 +1,38 @@
+{
+  "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
+  "productName": "口播智能体",
+  "version": "0.1.0",
+  "identifier": "com.koubo.agent",
+  "build": {
+    "beforeDevCommand": "node scripts/desktop-dev-backend.mjs",
+    "devUrl": "http://127.0.0.1:3100",
+    "beforeBuildCommand": "node scripts/desktop-build-preflight.mjs",
+    "frontendDist": "http://127.0.0.1:3100"
+  },
+  "app": {
+    "windows": [
+      {
+        "label": "main",
+        "title": "口播智能体",
+        "width": 1280,
+        "height": 820,
+        "minWidth": 1024,
+        "minHeight": 700,
+        "resizable": true,
+        "center": true,
+        "decorations": false
+      }
+    ],
+    "security": {
+      "csp": null
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": ["nsis"],
+    "category": "Productivity",
+    "resources": ["resources/koubo-backend"],
+    "shortDescription": "AI 口播视频生产工作台",
+    "longDescription": "面向 Windows 的轻量 AI 口播视频生产工作台。"
+  }
+}

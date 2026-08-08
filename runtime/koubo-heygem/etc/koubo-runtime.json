@@ -1,0 +1,6 @@
+{
+  "schemaVersion": 1,
+  "name": "KouboRuntime",
+  "version": "2026.07.0-heygem-bridge1",
+  "apiUrl": "http://127.0.0.1:8383"
+}

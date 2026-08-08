@@ -1,0 +1,107 @@
+{
+  "schemaVersion": 1,
+  "engine": "HeyGem",
+  "usage": "local_validation_only",
+  "distribution": {
+    "redistributionAuthorized": false,
+    "bundleInDesktopResources": false,
+    "mirrorOrCdnAllowed": false,
+    "reason": "The upstream Hack repository has an empty license file and states that its compiled .so files and models originate from DUIX/Guiji. These artifacts are locked only for local compatibility validation."
+  },
+  "upstream": {
+    "repository": "https://github.com/Holasyb918/HeyGem-Linux-Python-Hack",
+    "commit": "26a11ef830d5969957081dfc30f6f779d0b43fcb",
+    "tree": "73dbb79ed977fd21e1aade254dda38ebff254062",
+    "pythonAbi": "cp38-linux-x86_64"
+  },
+  "sourceArchive": {
+    "url": "https://github.com/Holasyb918/HeyGem-Linux-Python-Hack/archive/26a11ef830d5969957081dfc30f6f779d0b43fcb.tar.gz",
+    "cachePath": "source/HeyGem-Linux-Python-Hack-26a11ef830d5969957081dfc30f6f779d0b43fcb.tar.gz",
+    "size": 42149787,
+    "sha256": "aea3a069e87a0691a72212ca641cdb00b81c48e6e27338a139cd4b693ea25eae",
+    "archiveRoot": "HeyGem-Linux-Python-Hack-26a11ef830d5969957081dfc30f6f779d0b43fcb/",
+    "overlayExcludes": [
+      ".DS_Store",
+      "1.jpeg",
+      "README_tts_f2f.MD",
+      "app.py",
+      "example/",
+      "inference_from_text.sh"
+    ],
+    "note": "The immutable upstream source archive contains demo media and documentation. Those entries are never copied into the runtime overlay."
+  },
+  "models": [
+    {
+      "url": "https://github.com/Holasyb918/HeyGem-Linux-Python-Hack/releases/download/ckpts_and_onnx/face_attr_epoch_12_220318.onnx",
+      "cachePath": "models/face_attr_epoch_12_220318.onnx",
+      "targetPath": "face_attr_detect/face_attr_epoch_12_220318.onnx",
+      "size": 3723167,
+      "sha256": "0fa6604beacd1e560ffc4cae6fa1537591d5f1a765a9f55473a295a1d22da3af"
+    },
+    {
+      "url": "https://github.com/Holasyb918/HeyGem-Linux-Python-Hack/releases/download/ckpts_and_onnx/pfpld_robust_sim_bs1_8003.onnx",
+      "cachePath": "models/pfpld_robust_sim_bs1_8003.onnx",
+      "targetPath": "face_detect_utils/resources/pfpld_robust_sim_bs1_8003.onnx",
+      "size": 6889235,
+      "sha256": "8bd9913817152831562cccde7e51ed431d1cf4547d8f21e0876b58a0d82baa55"
+    },
+    {
+      "url": "https://github.com/Holasyb918/HeyGem-Linux-Python-Hack/releases/download/ckpts_and_onnx/scrfd_500m_bnkps_shape640x640.onnx",
+      "cachePath": "models/scrfd_500m_bnkps_shape640x640.onnx",
+      "targetPath": "face_detect_utils/resources/scrfd_500m_bnkps_shape640x640.onnx",
+      "size": 2524648,
+      "sha256": "b467f878e26ff1e7ee05cd9936fdff63fa2a5af5d732ed17ee231f2dd5cc07ae"
+    },
+    {
+      "url": "https://github.com/Holasyb918/HeyGem-Linux-Python-Hack/releases/download/ckpts_and_onnx/model_float32.onnx",
+      "cachePath": "models/model_float32.onnx",
+      "targetPath": "face_detect_utils/resources/model_float32.onnx",
+      "size": 17315434,
+      "sha256": "7e5dc9dd52836b2029a599e74134f1a0f03e416db3e40e932f69609adb0238ad"
+    },
+    {
+      "url": "https://github.com/Holasyb918/HeyGem-Linux-Python-Hack/releases/download/ckpts_and_onnx/dinet_v1_20240131.pth",
+      "cachePath": "models/dinet_v1_20240131.pth",
+      "targetPath": "landmark2face_wy/checkpoints/anylang/dinet_v1_20240131.pth",
+      "size": 392392973,
+      "sha256": "9c4568b1f1f2890b4a92edc3f9457af63f908065961233af2125d060cb56fd9e"
+    },
+    {
+      "url": "https://github.com/Holasyb918/HeyGem-Linux-Python-Hack/releases/download/ckpts_and_onnx/79999_iter.onnx",
+      "cachePath": "models/79999_iter.onnx",
+      "targetPath": "pretrain_models/face_lib/face_parsing/79999_iter.onnx",
+      "size": 52588603,
+      "sha256": "506b4c6e514a348980a49fd3f19d53ce3807dac57fedac127e917165fac0e928"
+    },
+    {
+      "url": "https://github.com/Holasyb918/HeyGem-Linux-Python-Hack/releases/download/ckpts_and_onnx/GFPGANv1.4.onnx",
+      "cachePath": "models/GFPGANv1.4.onnx",
+      "targetPath": "pretrain_models/face_lib/face_restore/gfpgan/GFPGANv1.4.onnx",
+      "size": 340255593,
+      "sha256": "f061a99cb6c8025dd5d29bf04e4d0349d613bb8dc1484555ea79403cee2cf448"
+    },
+    {
+      "url": "https://github.com/Holasyb918/HeyGem-Linux-Python-Hack/releases/download/ckpts_and_onnx/xseg_211104_4790000.onnx",
+      "cachePath": "models/xseg_211104_4790000.onnx",
+      "targetPath": "xseg/xseg_211104_4790000.onnx",
+      "size": 70324585,
+      "sha256": "8867760aeb83176e392d58c9ca123945cc36732c16763915b1d97f3acb0f1d64"
+    },
+    {
+      "url": "https://github.com/Holasyb918/HeyGem-Linux-Python-Hack/releases/download/ckpts_and_onnx/wenetmodel.pt",
+      "cachePath": "models/wenetmodel.pt",
+      "targetPath": "wenet/examples/aishell/aidata/exp/conformer/wenetmodel.pt",
+      "size": 191093698,
+      "sha256": "0f59bf2ebb02c7fa560b44370a656392e8cc8d8214a0d0a99e8fd8edde39c792"
+    }
+  ],
+  "expectedCacheFileCount": 10,
+  "expectedTotalBytes": 1119257723,
+  "forbiddenDownloads": [
+    "MuseTalk",
+    "HeyGem-Linux-Python-Hack-RTX-50",
+    "tts-fish-speech",
+    "Docker images",
+    "scrfd_10g_kps.onnx"
+  ]
+}

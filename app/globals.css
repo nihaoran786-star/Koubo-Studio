@@ -1,0 +1,304 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-heading: var(--font-sans);
+  --font-sans: 'Microsoft YaHei UI', 'PingFang SC', 'Segoe UI', system-ui, sans-serif;
+  --font-mono: 'Cascadia Mono', 'SFMono-Regular', Consolas, monospace;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Brand surface tokens */
+  --color-panel: var(--panel);
+  --color-panel-solid: var(--panel-solid);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-sub: var(--sub);
+  --color-cyan: var(--cyan);
+  --color-teal: var(--teal);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-glow: var(--glow);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+}
+
+:root {
+  --radius: 0.72rem;
+
+  --background: #f7f8fb;
+  --foreground: #111827;
+  --card: #ffffff;
+  --card-foreground: #0a0a0b;
+  --popover: #ffffff;
+  --popover-foreground: #0a0a0b;
+
+  --primary: #0a0a0b;
+  --primary-foreground: #ffffff;
+  --secondary: #eef1f6;
+  --secondary-foreground: #0a0a0b;
+  --muted: #f2f4f8;
+  --muted-foreground: #6f7886;
+  --accent: #eaf3ff;
+  --accent-foreground: #0b6ed5;
+  --destructive: #e5484d;
+  --border: rgba(0, 0, 0, 0.08);
+  --input: rgba(0, 0, 0, 0.12);
+  --ring: #0071e3;
+
+  --panel: rgba(255, 255, 255, 0.78);
+  --panel-solid: #ffffff;
+  --line: rgba(17, 24, 39, 0.09);
+  --line-strong: rgba(17, 24, 39, 0.16);
+  --sub: #707987;
+  --cyan: #1d6bf3;
+  --teal: #00b8a3;
+  --success: #1a9d54;
+  --warning: #c2710c;
+  --glow: rgba(0, 113, 227, 0.28);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+  }
+  * {
+    scrollbar-width: none;
+    scrollbar-color: transparent transparent;
+  }
+  *::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  *::-webkit-scrollbar-thumb {
+    background: transparent;
+    border: 0;
+    border-radius: 999px;
+  }
+  *::-webkit-scrollbar-thumb:hover {
+    background: transparent;
+    border: 0;
+  }
+  *::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+}
+
+@layer utilities {
+  .flow-next-button {
+    width: 7.8em !important;
+    height: 2.55em !important;
+    border-radius: 30em !important;
+    border: none !important;
+    position: relative !important;
+    overflow: hidden !important;
+    z-index: 1 !important;
+    padding: 0 !important;
+    background: rgba(255, 255, 255, 0.84) !important;
+    color: #0f172a !important;
+    font-size: 13px !important;
+    font-family: inherit !important;
+    font-weight: 700 !important;
+    box-shadow:
+      4px 4px 10px #d5dce7,
+      -4px -4px 10px #ffffff !important;
+    outline: 1px solid rgba(30, 167, 255, 0.16) !important;
+    backdrop-filter: blur(18px);
+    transform: translateZ(0);
+    transition:
+      transform 0.18s ease,
+      box-shadow 0.18s ease,
+      color 0.18s ease !important;
+  }
+  .flow-next-button::before {
+    content: '';
+    width: 0;
+    height: 2.55em;
+    border-radius: 30em;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: linear-gradient(120deg, #1ea7ff 0%, #68d8ff 52%, #00c2b8 100%);
+    transition: 0.5s ease;
+    display: block;
+    z-index: -1;
+  }
+  .flow-next-button:hover::before {
+    width: 7.8em;
+  }
+  .flow-next-button:hover {
+    color: #ffffff !important;
+    transform: translateY(-1px);
+    box-shadow:
+      5px 5px 14px rgba(151, 164, 184, 0.34),
+      -5px -5px 14px #ffffff,
+      0 8px 22px rgba(30, 167, 255, 0.16) !important;
+  }
+  .flow-next-button:active {
+    transform: translateY(1px) scale(0.98);
+    box-shadow:
+      2px 2px 7px #d6dbe4,
+      -2px -2px 7px #ffffff !important;
+  }
+  .flow-next-button:disabled {
+    cursor: not-allowed;
+    opacity: 0.55 !important;
+    transform: none;
+  }
+  .flow-next-button:disabled::before {
+    width: 0;
+  }
+  .flow-action-dock {
+    position: absolute;
+    right: clamp(0.25rem, 2vw, 1.75rem);
+    top: clamp(0.25rem, 1.4vw, 1rem);
+    z-index: 30;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .glass {
+    background: var(--panel);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid var(--line);
+  }
+  .panel {
+    background: var(--panel-solid);
+    border: 1px solid var(--line);
+    box-shadow:
+      0 1px 2px rgba(0, 0, 0, 0.03),
+      0 10px 30px -24px rgba(17, 24, 39, 0.18);
+  }
+  .hairline {
+    border: 1px solid var(--line);
+  }
+  .text-sub {
+    color: var(--sub);
+  }
+  .grid-bg {
+    background-color: var(--background);
+    background-image: none;
+  }
+  .glow-ring {
+    box-shadow:
+      0 1px 2px rgba(0, 0, 0, 0.04),
+      0 24px 60px -28px rgba(0, 113, 227, 0.35);
+  }
+  .num {
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.02em;
+  }
+}
+
+@keyframes scanline {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(220%);
+    opacity: 0;
+  }
+}
+
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.animate-spin-slow {
+  animation: spin-slow 12s linear infinite;
+}
+.animate-spin-reverse {
+  animation: spin-slow 18s linear infinite reverse;
+}
+
+@keyframes pulse-ring {
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: scale(0.96);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.animate-pulse-ring {
+  animation: pulse-ring 2.4s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(200%); }
+}
+
+/* ── "interface in space" helpers ── */
+@keyframes float-y {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.animate-float {
+  animation: float-y 6s ease-in-out infinite;
+}
+.animate-float-slow {
+  animation: float-y 8.5s ease-in-out infinite;
+}
+
+@layer utilities {
+  /* deep, soft environmental shadow — a surface suspended in space */
+  .shadow-spatial {
+    box-shadow:
+      0 2px 6px rgba(0, 0, 0, 0.04),
+      0 30px 60px -24px rgba(0, 0, 0, 0.22),
+      0 60px 120px -40px rgba(0, 113, 227, 0.16);
+  }
+  .shadow-float {
+    box-shadow:
+      0 1px 2px rgba(0, 0, 0, 0.05),
+      0 16px 32px -16px rgba(0, 0, 0, 0.18);
+  }
+  /* radial room lighting behind a hero subject */
+  .room-light {
+    background: transparent;
+  }
+}
